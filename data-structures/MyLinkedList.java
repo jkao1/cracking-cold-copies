@@ -1,4 +1,6 @@
-public class MyLinkedList<T> {
+import java.util.*;
+
+public class MyLinkedList<T> implements Iterable<T> {
     private Node<T> head;
     private int size;
 
@@ -39,6 +41,10 @@ public class MyLinkedList<T> {
         return size;
     }
 
+    public Iterator<T> iterator() {
+        return new MyLinkedListIterator(this);
+    }
+
     private class Node<T> {
         private T value;
         public Node<T> next;
@@ -49,6 +55,34 @@ public class MyLinkedList<T> {
 
         public T getValue() {
             return value;
+        }
+    }
+
+    private class MyLinkedListIterator implements Iterator<T>{
+        private MyLinkedList linkedList;
+        private Node<T> currentNode;
+
+        public MyLinkedListIterator(MyLinkedList linkedList) {
+            this.linkedList = linkedList;
+            currentNode = head;
+        }
+
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+
+        public T next() {
+            if (hasNext()) {
+                T output = currentNode.value;
+                currentNode = currentNode.next;
+                return output;
+            } else {
+                throw new NoSuchElementException();
+            }
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
         }
     }
 }
