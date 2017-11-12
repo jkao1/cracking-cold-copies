@@ -24,6 +24,16 @@ public class MyLinkedList<T> implements Iterable<T> {
         return true;
     }
 
+    public Node<T> findNode(T value) {
+        Node<T> tracker = head;
+        while (tracker != null) {
+            if (value.compareTo(tracker.getValue()) == 0) {
+                return tracker;
+            }
+            tracker = tracker.next;
+        }
+    }
+
     public String toString() {
         if (head == null) {
             return "[]";
