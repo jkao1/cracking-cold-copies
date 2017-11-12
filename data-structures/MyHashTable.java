@@ -16,10 +16,15 @@ public class MyHashtable {
 
     public boolean put(String key, String value)
     {
-        int hashCode = getHashCode(key);
-        System.out.println(array.size());
+        int hashCode = getHashCode(key);javac
         array.get(hashCode % array.size()).add(new Entry(key, value));
         return true;
+    }
+
+    public String get(String key){
+        int hashCode = getHashCode(key);
+        linkedList = array.get(hashCode % array.size());
+        //TODO;
     }
 
     public String toString()
