@@ -1,23 +1,41 @@
-public class MyHashtable {
-    private LinkedList<Entry>[] array;
+import java.util.*;
 
-    public MyHashTable() {
-        array = new LinkedList<Entry>()[10];
+public class MyHashtable {
+    private ArrayList<MyLinkedList<Entry>> array;
+
+    public MyHashtable() {
+        array = new ArrayList<MyLinkedList<Entry>>();
+        for (int i = 0; i < 10; i++) {
+            array.add(new MyLinkedList<Entry>());
+        }
     }
 
     private int getHashCode(String key) {
-        return value.length()**2;
+        return (int) (Math.pow(key.length(), 3));
     }
 
     public boolean put(String key, String value)
     {
         int hashCode = getHashCode(key);
-        array[hashCode % array.length].add(new Entry(key, value));
+        System.out.println(array.size());
+        array.get(hashCode % array.size()).add(new Entry(key, value));
+        return true;
     }
 
     public String toString()
     {
-        String output = "";
+        if (array.size() == 0) {
+            return "{}";
+        }
+        String output = "{";
+        for (int i = 0; i < array.size(); i++) {
+            MyLinkedList<Entry> entries = array.get(i);
+            output += String.format("\n\t[%d]: ", i);
+            for (Entry e : entries) {
+                output += e + ", ";
+            }
+        }
+        return output.substring(0, output.length() - 2) + "\n}";
     }
 
     private class Entry {

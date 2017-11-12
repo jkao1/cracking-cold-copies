@@ -2,9 +2,9 @@ public class Driver {
     public static void main(String[] args)
     {
         MyHashtable hashtable = new MyHashtable();
-        hashtable.put("cracking", "gnikcarc");
-        hashtable.put("mary", "yram");
-        hashtable.put("machine", "enihcam");
+        for (String s : new String[]{"", "cracking", "mary", "machime", "jason", "emacs", "vim", "santagato", "cubed", "etcerta", "eggwash"}) {
+            hashtable.put(s, new StringBuilder(s).reverse().toString());
+        }
         System.out.println(hashtable);
     }
 }
